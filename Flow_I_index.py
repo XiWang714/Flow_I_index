@@ -32,7 +32,7 @@ def idxfunc(grp,alpha):
 if __name__ == "__main__":
 
     ## Step1 File path and params
-    odfile = "./data/bj_od_sample.csv"       #OD flow file, header: flowid, olon,olat, dlon,dlat
+    odfile = "./data/bj_od_sample.csv"       #OD flow file, header: odid, olon,olat, dlon,dlat
     polyfile = "./data/grid.csv"             #Polygon file, header: polyid, geometry
     odtype = "d"                             #Calculated based on O point or D point, default D
     alphastr = "auto"                        #decide alpha: choose auto or direct give a number
@@ -69,6 +69,7 @@ if __name__ == "__main__":
     idxdf = flows_with_poly.groupby('polyid',as_index=False).apply(idxfunc,alpha=alpha)
     idxdf['alpha'] = alpha
     idxdf[["polyid","alpha","I_index","flowtotalcnt","flowtotallength"]].to_csv(iidxfile,index=False,sep =',')
+
 
 
 
