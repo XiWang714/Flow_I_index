@@ -36,7 +36,7 @@ if __name__ == "__main__":
     polyfile = "./data/grid.csv"             #Polygon file, header: polyid, geometry
     odtype = "d"                             #Calculated based on O point or D point, default D
     alphastr = "auto"                        #decide alpha: choose auto or direct give a number
-    iidxfile = "./data/grid_iidx.csv"        #result file, header: "polyid","alpha","I_index","flowtotalcnt","flowtotallength","wkt"
+    iidxfile = "./data/grid_iidx.csv"        #result file, header: "polyid","alpha","I_index","flowtotalcnt","flowtotallength"
     prjrawcode = 'EPSG:4326'                 #information of gcs for later project
 
 
@@ -69,5 +69,6 @@ if __name__ == "__main__":
     idxdf = flows_with_poly.groupby('polyid',as_index=False).apply(idxfunc,alpha=alpha)
     idxdf['alpha'] = alpha
     idxdf[["polyid","alpha","I_index","flowtotalcnt","flowtotallength"]].to_csv(iidxfile,index=False,sep =',')
+
 
 
